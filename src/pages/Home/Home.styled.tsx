@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 const SCHome = styled.div`
-  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export default SCHome;

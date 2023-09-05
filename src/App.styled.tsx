@@ -8,6 +8,7 @@ const SCApp = styled.div`
   --very-light-gray: 238, 239, 244;
   --white: 255, 255, 255;
   --red: 223, 86, 86;
+  --authoritative-blue: 23, 178, 243;
 
   background-color: white;
 
@@ -34,6 +35,14 @@ const SCApp = styled.div`
     line-height: 80px;
     letter-spacing: -2px;
     font-weight: 700;
+
+    &.scaled {
+      @media screen and (max-width: 500px) {
+        font-size: 48px;
+        line-height: 48px;
+        letter-spacing: -1.25px;
+      }
+    }
   }
 
   .fs-h3 {
@@ -58,6 +67,7 @@ const SCApp = styled.div`
 
   .fs-body-2 {
     letter-spacing: 18px;
+    text-transform: uppercase;
   }
 
   /* #endregion */

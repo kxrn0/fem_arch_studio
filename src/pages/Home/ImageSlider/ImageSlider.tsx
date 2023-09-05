@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent, CSSProperties } from "react";
 import { ImageType } from "../../../types.ts";
 import SCImageSlider from "./ImageSlider.styled.tsx";
 import { Link } from "wouter";
@@ -6,43 +6,84 @@ import IconArrow from "../../../icons/IconArrow.tsx";
 
 export type SliderImageType = {
   name: string;
+  id: number;
   description: string;
   images: { desktop: ImageType; tablet: ImageType; mobile: ImageType };
 };
 
 type Props = {
   images: SliderImageType[];
+  time?: number;
 };
 
-export default function ImageSlider({ images }: Props) {
+export default function ImageSlider({ images, time = 0.33 }: Props) {
   const [currentImage, setCurrentImage] = useState(images[0]);
+  const [isExiting, setIsExiting] = useState(false);
+  const [isEntering, setIsEntering] = useState(false);
 
   function handle_click(event: MouseEvent) {
     const target = event.target as HTMLButtonElement;
-    const index = Number(target.dataset.index);
+    const id = Number(target.dataset.id);
 
-    setCurrentImage(images[index]);
+    if (id === currentImage.id) return;
+
+    const image = images.find((image) => image.id === id)!;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCurrentImage(image);
+      return;
+    }
+
+    setIsExiting(true);
+    setTimeout(() => {
+      setCurrentImage(image);
+      setIsExiting(false);
+      setIsEntering(true);
+    }, time * 1000);
   }
 
   return (
-    <SCImageSlider>
-      <picture>
-        <source
-          srcSet={`${currentImage.images.desktop.src}`}
-          media="(min-width: 1200px)"
-        />
-        <source
-          srcSet={`${currentImage.images.tablet.src}`}
-          media="(min-width: 500px)"
-        />
-        <img src={currentImage.images.mobile.src} alt={currentImage.name} />
-      </picture>
+    <SCImageSlider style={{ "--time": `${time}s` } as CSSProperties}>
+      <div className="picture-container">
+        <picture>
+          <source
+            srcSet={`${currentImage.images.desktop.src}`}
+            media="(min-width: 1200px)"
+          />
+          <source
+            srcSet={`${currentImage.images.tablet.src}`}
+            media="(min-width: 500px)"
+          />
+          <img
+            src={currentImage.images.mobile.src}
+            alt={currentImage.name}
+            className={`${isEntering && "entering"} ${isExiting && "exiting"}`}
+          />
+        </picture>
+      </div>
       <div className="information">
         <div className="details">
-          <h2 className="fs-h2">{currentImage.name}</h2>
-          <p className="fs-body-1">{currentImage.description}</p>
+          <h2
+            className={`fs-h2 scaled ${isEntering && "entering"} ${
+              isExiting && "exiting"
+            }`}
+          >
+            {currentImage.name}
+          </h2>
+          <p
+            className={`fs-body-1 ${isEntering && "entering"} ${
+              isExiting && "exiting"
+            }`}
+          >
+            {currentImage.description}
+          </p>
         </div>
-        <Link to="/fem_arch_studio/portfolio" className="button-primary">
+        <Link
+          to="/fem_arch_studio/portfolio"
+          className={`button-primary ${isEntering && "entering"} ${
+            isExiting && "exiting"
+          }`}
+        >
           <p>See Our Portfolio</p>
           <IconArrow />
         </Link>
@@ -50,11 +91,11 @@ export default function ImageSlider({ images }: Props) {
       <div className="buttons">
         {images.map((image, index) => (
           <button
-            key={index}
+            key={image.id}
             className={`button-tertiary ${
-              currentImage.name === image.name && "selected"
+              currentImage.id === image.id && "selected"
             }`}
-            data-index={index}
+            data-id={image.id}
             onClick={handle_click}
           >
             {String(index + 1).padStart(2, "0")}
