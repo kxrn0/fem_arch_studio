@@ -11,6 +11,8 @@ const SCApp = styled.div`
   --authoritative-blue: 23, 178, 243;
 
   background-color: white;
+  display: flex;
+  flex-direction: column;
 
   /* #region */
 
@@ -28,6 +30,14 @@ const SCApp = styled.div`
     line-height: 200px;
     letter-spacing: -5px;
     font-weight: 700;
+
+    &.scaled {
+      @media screen and (max-width: 1300px) {
+        font-size: 120px;
+        line-height: 200px;
+        letter-spacing: -3px;
+      }
+    }
   }
 
   .fs-h2 {
@@ -37,7 +47,7 @@ const SCApp = styled.div`
     font-weight: 700;
 
     &.scaled {
-      @media screen and (max-width: 500px) {
+      @media screen and (max-width: 730px) {
         font-size: 48px;
         line-height: 48px;
         letter-spacing: -1.25px;
@@ -50,6 +60,14 @@ const SCApp = styled.div`
     line-height: 64px;
     letter-spacing: -2px;
     font-weight: 700;
+
+    &.scaled {
+      @media screen and (max-width: 625px) {
+        font-size: 48px;
+        line-height: 52px;
+        letter-spacing: -1.7px;
+      }
+    }
   }
 
   .fs-h4 {
@@ -101,6 +119,7 @@ const SCApp = styled.div`
 
   .button-primary {
     display: flex;
+    justify-content: center;
     gap: 25px;
     padding: 25px 35px;
     text-decoration: none;

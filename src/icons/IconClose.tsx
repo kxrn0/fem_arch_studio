@@ -1,9 +1,11 @@
 export default function IconClose() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="17">
-      <g fill="#1B1D23" fillRule="evenodd">
-        <path d="M0 0h24v3H0zM0 7h24v3H0zM0 14h24v3H0z" />
-      </g>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21">
+      <path
+        fill="#1B1D23"
+        fillRule="evenodd"
+        d="M17.425.954l2.12 2.121-7.424 7.425 7.425 7.425-2.121 2.12L10 12.622l-7.425 7.425-2.12-2.121L7.878 10.5.454 3.075 2.575.955 10 8.378 17.425.954z"
+      />
     </svg>
   );
 }

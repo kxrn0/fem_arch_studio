@@ -19,6 +19,10 @@ const SCImageSlider = styled.div`
         animation: fade-out var(--time) forwards;
       }
 
+      @media screen and (max-width: 500px) {
+        width: 100vw;
+      }
+
       @keyframes fade-out {
         from {
           opacity: 1;
@@ -75,7 +79,7 @@ const SCImageSlider = styled.div`
           animation: slide-out var(--time) forwards;
         }
 
-        @media screen and (max-width: 1200px) {
+        @media screen and (max-width: 1300px) {
           width: 100%;
         }
       }
@@ -83,11 +87,19 @@ const SCImageSlider = styled.div`
       .fs-h2 {
         color: rgb(var(--white));
         width: 545px;
+
+        @media screen and (max-width: 730px) {
+          width: 100%;
+        }
       }
 
       .fs-body-1 {
         color: rgb(var(--white));
         width: 445px;
+
+        @media screen and (max-width: 730px) {
+          width: 100%;
+        }
       }
     }
 
@@ -101,12 +113,12 @@ const SCImageSlider = styled.div`
       }
     }
 
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1300px) {
       padding: 185px 60px;
       padding-bottom: 180px;
     }
 
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 730px) {
       gap: 85px;
       padding: 115px 30px;
       padding-bottom: 110px;
@@ -143,7 +155,7 @@ const SCImageSlider = styled.div`
     bottom: 0;
     left: -80px;
 
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1300px) {
       display: none;
     }
   }

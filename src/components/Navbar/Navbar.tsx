@@ -1,11 +1,14 @@
 import { useLocation, Link } from "wouter";
 import Logo from "../../icons/Logo.tsx";
 import SCNavbar from "./Navbar.styled.tsx";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
+import IconMenu from "../../icons/IconMenu.tsx";
+import IconClose from "../../icons/IconClose.tsx";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const currentPath = useMemo(() => {
+  const currentPage = useMemo(() => {
     const path = location[0].split("/")[2];
 
     switch (path) {
@@ -33,6 +36,19 @@ export default function Navbar() {
     []
   );
 
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location[0]]);
+
+  useEffect(() => {
+    if (isOpen) document.body.style.overflowY = "hidden";
+    else document.body.style.overflowY = "";
+
+    return () => {
+      document.body.style.overflowY = "";
+    };
+  }, [isOpen]);
+
   return (
     <SCNavbar>
       <Link to="/fem_arch_studio/">
@@ -40,18 +56,29 @@ export default function Navbar() {
           <Logo />
         </span>
       </Link>
-      <div className="path" tabIndex={0}>
+      <div
+        className={`backdrop ${isOpen && "active"}`}
+        onClick={() => setIsOpen(false)}
+      ></div>
+      <div className="page" tabIndex={0}>
         <div className="line"></div>
-        <p className="fs-body-2">{currentPath}</p>
+        <p className="fs-body-2">{currentPage}</p>
       </div>
-      <input type="checkbox" className="navbar-toggle" />
-      <div className="links">
+      <label className="navbar-toggle">
+        <input
+          type="checkbox"
+          checked={isOpen}
+          onChange={(e) => setIsOpen(e.target.checked)}
+        />
+        {isOpen ? <IconClose /> : <IconMenu />}
+      </label>
+      <div className={`links ${isOpen ? "open" : "closed"}`}>
         {links.map((link, index) => (
           <Link
             key={index}
             to={link.to}
             className={`fs-body-1 ${
-              currentPath === link.name ? "current-page" : ""
+              currentPage === link.name ? "current-page" : ""
             }`}
           >
             {link.text}

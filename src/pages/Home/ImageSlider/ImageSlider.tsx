@@ -1,5 +1,5 @@
 import { useState, MouseEvent, CSSProperties } from "react";
-import { ImageType } from "../../../types.ts";
+import { ResponsiveImageType } from "../../../types.ts";
 import SCImageSlider from "./ImageSlider.styled.tsx";
 import { Link } from "wouter";
 import IconArrow from "../../../icons/IconArrow.tsx";
@@ -8,7 +8,7 @@ export type SliderImageType = {
   name: string;
   id: number;
   description: string;
-  images: { desktop: ImageType; tablet: ImageType; mobile: ImageType };
+  image: ResponsiveImageType;
 };
 
 type Props = {
@@ -47,15 +47,15 @@ export default function ImageSlider({ images, time = 0.33 }: Props) {
       <div className="picture-container">
         <picture>
           <source
-            srcSet={`${currentImage.images.desktop.src}`}
-            media="(min-width: 1200px)"
+            srcSet={currentImage.image.desktop.src}
+            media={`(min-width: ${currentImage.image.desktop.breakPoint}px)`}
           />
           <source
-            srcSet={`${currentImage.images.tablet.src}`}
-            media="(min-width: 500px)"
+            srcSet={currentImage.image.tablet.src}
+            media={`(min-width: ${currentImage.image.tablet.breakPoint}px)`}
           />
           <img
-            src={currentImage.images.mobile.src}
+            src={currentImage.image.mobile.src}
             alt={currentImage.name}
             className={`${isEntering && "entering"} ${isExiting && "exiting"}`}
           />
