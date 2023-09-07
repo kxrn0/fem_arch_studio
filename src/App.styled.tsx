@@ -9,6 +9,7 @@ const SCApp = styled.div`
   --white: 255, 255, 255;
   --red: 223, 86, 86;
   --authoritative-blue: 23, 178, 243;
+  --forgotten-gray: 225, 225, 225;
 
   background-color: white;
   display: flex;

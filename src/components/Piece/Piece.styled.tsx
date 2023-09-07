@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const SCPiece = styled.div`
   position: relative;
+  width: fit-content;
 
   .fs-h1 {
     color: rgb(var(--white), 0.5);
@@ -16,6 +17,21 @@ const SCPiece = styled.div`
 
     @media screen and (max-width: 650px) {
       display: none;
+    }
+  }
+
+  .screen {
+    background-color: rgb(var(--forgotten-gray));
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.33s;
+    z-index: 1;
+
+    @media (hover: hover) {
+      &:hover {
+        opacity: 0.35;
+      }
     }
   }
 

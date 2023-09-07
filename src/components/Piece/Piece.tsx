@@ -21,8 +21,9 @@ export default function Piece({ name, Meta, image, label }: PieceType) {
           srcSet={image.tablet.src}
           media={`(min-width: ${image.tablet.breakPoint}px)`}
         />
-        <img src={image.mobile.src} alt={name} />
+        <img src={image.mobile.src} alt={name} loading="lazy" />
       </picture>
+      <div className="screen"></div>
       {label && <h1 className="fs-h1">{label}</h1>}
       <div className="peace">
         <h4 className="fs-h4">{name}</h4>

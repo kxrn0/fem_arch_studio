@@ -124,7 +124,7 @@ const SCNavbar = styled.div`
       width: 345px;
       padding: 40px 50px;
       transition: transform 0.33s, opacity 0.33s;
-      z-index: 1;
+      z-index: 2;
 
       &.open {
         transform: translateY(0);
