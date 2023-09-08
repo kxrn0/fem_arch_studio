@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
-const SCHero = styled.div`
+const SCHero = styled.header`
   position: relative;
   width: fit-content;
+  align-self: flex-start;
 
   img {
     @media screen and (max-width: 700px) {
@@ -17,7 +18,6 @@ const SCHero = styled.div`
   }
 
   .rest {
-    /* outline: 1px solid red; */
     background-color: rgb(var(--white));
     position: absolute;
     top: 215px;
@@ -105,6 +105,10 @@ const SCHero = styled.div`
       padding-left: 30px;
       width: fit-content;
     }
+  }
+
+  @media screen and (max-width: 1300px) {
+    align-self: center;
   }
 `;
 
