@@ -5,15 +5,18 @@ const SCPortfolio = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
-  padding-bottom: 160px;
+  padding: 360px 165px;
+  padding-top: 0;
 
   @media screen and (max-width: 1200px) {
     gap: 25px;
-    padding-bottom: 200px;
+    padding: 240px 100px;
+    padding-top: 0;
   }
 
   @media screen and (max-width: 760px) {
-    padding-bottom: 130px;
+    padding: 0;
+    padding-bottom: 170px;
   }
 `;
 

@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from "react";
 import L from "leaflet";
+import icon from "../../../assets/icons/marker-icon.svg";
 import SCLeaf from "./Leaf.styled.tsx";
 import "leaflet/dist/leaflet.css";
 
@@ -30,10 +31,11 @@ export default function Leaf({
     }).addTo(map);
 
     locations.forEach((location) =>
-      L.marker(location.coordinates)
+      L.marker(location.coordinates, {
+        icon: L.icon({ iconUrl: icon, iconAnchor: [20, 0] }),
+      })
         .addTo(map)
         .bindPopup(location.name)
-        .openPopup()
     );
 
     return () => {
@@ -41,5 +43,5 @@ export default function Leaf({
     };
   }, []);
 
-  return <SCLeaf id={mapId}>map</SCLeaf>;
+  return <SCLeaf id={mapId} className="map">map</SCLeaf>;
 }

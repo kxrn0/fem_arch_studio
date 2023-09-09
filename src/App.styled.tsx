@@ -14,6 +14,7 @@ const SCApp = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 
   /* #region */
 
@@ -22,7 +23,8 @@ const SCApp = styled.div`
   .fs-h3,
   .fs-h4,
   .fs-body-1,
-  .fs-body-2 {
+  .fs-body-2,
+  .fs-body-3 {
     font-family: soyjak;
   }
 
@@ -78,15 +80,25 @@ const SCApp = styled.div`
   }
 
   .fs-body-1,
-  .fs-body-2 {
+  .fs-body-2,
+  .fs-body-3 {
     font-size: 18px;
-    line-height: 24px;
     font-weight: 500;
+  }
+
+  .fs-body-1,
+  .fs-body-2 {
+    line-height: 24px;
   }
 
   .fs-body-2 {
     letter-spacing: 18px;
     text-transform: uppercase;
+  }
+
+  .fs-body-3 {
+    font-weight: 700;
+    line-height: 35px;
   }
 
   /* #endregion */
@@ -100,6 +112,10 @@ const SCApp = styled.div`
     font-weight: 700;
     transition: background-color 0.33s;
     border: none;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 
   .button-primary,
@@ -112,7 +128,7 @@ const SCApp = styled.div`
     }
 
     @media (hover: hover) {
-      &:not(:active):hover {
+      &:not(:active, :disabled):hover {
         background-color: rgb(var(--dark-gray));
       }
     }
@@ -150,7 +166,7 @@ const SCApp = styled.div`
     }
 
     @media (hover: hover) {
-      &:not(.selected):hover {
+      &:not(.selected, :disabled):hover {
         background-color: rgb(var(--very-light-gray));
       }
     }
@@ -176,6 +192,7 @@ const SCApp = styled.div`
     }
 
     input[type="text"],
+    input[type="email"],
     textarea {
       background-color: transparent;
       color: rgb(var(--very-dark-blue));
@@ -207,12 +224,13 @@ const SCApp = styled.div`
       }
     }
 
-    input[type="text"] {
-      padding-bottom: 30px;
+    input[type="text"],
+    input[type="email"] {
+      padding-bottom: 20px;
     }
 
     textarea {
-      padding-bottom: 75px;
+      padding-bottom: 70px;
     }
   }
 `;
