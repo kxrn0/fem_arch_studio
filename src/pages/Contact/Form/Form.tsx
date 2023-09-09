@@ -18,15 +18,11 @@ export default function Form() {
   });
 
   async function send(data: Record<string, string>) {
-    try {
-      await fetch("https://jsonplaceholder.typicode.com/posts", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" },
-      });
-    } catch (error) {
-      throw error;
-    }
+    await fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   async function handle_submission(event: FormEvent) {
@@ -37,7 +33,7 @@ export default function Form() {
 
     hasEmpty = false;
 
-    for (let [key, value] of Object.entries(formData)) {
+    for (const [key, value] of Object.entries(formData)) {
       data[key] = value.trim();
       hasEmpty ||= !data[key];
     }
